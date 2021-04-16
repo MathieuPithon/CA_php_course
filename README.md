@@ -9,6 +9,8 @@
   - [ ] pseudo
   - [ ] génération aléatoire labyrinthe
   - [ ] enregistrement du labyrinthe en RLE (pouvoir en stocker plein)
+  - [ ] tout mettre dans une classe et séparé en méthodes
+  - [ ] ajouter les inputs au clavier
   - [ ] faire les bonus
 
 ## génération labyrinthe:
