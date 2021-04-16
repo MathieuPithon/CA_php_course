@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # PHP_course
  ![image](https://user-images.githubusercontent.com/35268109/115069416-cf793200-9ef3-11eb-9979-63d23e933e8c.png)
+=======
+# CA_php_course
+ 
+>>>>>>> parent of 9ea3db6 (Update README.md)
 ## labyrinthe to do:
   - [X] créer un premier labyrinthe manuellement en .txt avec des lettres
   - [X] ouvrir le fichier .txt et afficher le labyrinthe en php sur le site
