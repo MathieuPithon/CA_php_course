@@ -10,8 +10,12 @@
   - [ ] génération aléatoire labyrinthe
   - [ ] enregistrement du labyrinthe en RLE (pouvoir en stocker plein)
   - [ ] tout mettre dans une classe et séparé en méthodes
-  - [ ] ajouter les inputs au clavier
+  - [ ] enregistrer les score dans une BDD
   - [ ] faire les bonus
+
+### extra bonus
+ - [ ] ajouter les inputs au clavier en JavaScript
+ - [ ] ajouter un choix de taille de labyrinthe
 
 ## génération labyrinthe:
 

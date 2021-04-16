@@ -47,12 +47,12 @@ foreach ($tableau as $case) {
     <div class="block">
         <div>
             <div class="inner">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</div>
-            <div class="inner"><button type="submit" class="msgBtn" onClick="return false;">haut</button></div>
+            <div class="inner"><input type="button" value="haut"></div>
         </div>
         <div id="outer">
-            <div class="inner"><button type="submit" class="msgBtn" onClick="return false;">gauche</button></div>
-            <div class="inner"><button type="submit" class="msgBtn2" onClick="return false;">bas</button></div>
-            <div class="inner"><button class="msgBtnBack">droite</button></div>
+        <div class="inner"><input type="button" value="gauche"></div>
+        <div class="inner"><input type="button" value="bas"></div>
+        <div class="inner"><input type="button" value="droite"></div>
         </div>
     </div>
 </body>
