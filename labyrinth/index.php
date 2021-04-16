@@ -37,7 +37,7 @@ foreach ($tableau as $case) {
             echo "&nbsp";
         }
         if ($subcase == "j") {
-            echo "X";
+            echo "֍";
         }
     }
     echo  "<br>";
