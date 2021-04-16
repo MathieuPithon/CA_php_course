@@ -1,4 +1,4 @@
-# PHP_course
+PHP_course
  ![image](https://user-images.githubusercontent.com/35268109/115069416-cf793200-9ef3-11eb-9979-63d23e933e8c.png)
 ## labyrinthe to do:
   - [X] créer un premier labyrinthe manuellement en .txt avec des lettres
