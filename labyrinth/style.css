@@ -1,0 +1,13 @@
+#outer
+{
+    width:100%;
+    text-align: left;
+}
+.inner
+{
+    display: inline-block;
+}
+.block
+{
+    display: block;
+}
