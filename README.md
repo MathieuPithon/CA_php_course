@@ -3,8 +3,8 @@
 ## labyrinthe to do:
   - [X] créer un premier labyrinthe manuellement en .txt avec des lettres
   - [X] ouvrir le fichier .txt et afficher le labyrinthe en php sur le site
-  - [ ] boutons déplacements
-  - [ ] gérer déplacements personnage
+  - [x] boutons déplacements
+  - [x] gérer déplacements personnage
   - [ ] victoire
   - [ ] pseudo
   - [ ] génération aléatoire labyrinthe

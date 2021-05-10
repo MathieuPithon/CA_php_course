@@ -9,7 +9,5 @@
 }
 .block
 {
-    display: block;
-    width: 6.5%;
-    text-align: center;
+    margin-top: 50px;
 }
