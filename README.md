@@ -5,8 +5,8 @@
   - [X] ouvrir le fichier .txt et afficher le labyrinthe en php sur le site
   - [x] boutons déplacements
   - [x] gérer déplacements personnage
-  - [ ] victoire
-  - [ ] pseudo
+  - [x] victoire
+  - [x] pseudo
   - [ ] génération aléatoire labyrinthe
   - [ ] enregistrement du labyrinthe en RLE (pouvoir en stocker plein)
   - [ ] tout mettre dans une classe et séparé en méthodes
