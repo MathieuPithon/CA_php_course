@@ -12,7 +12,8 @@
     <pre style="font-family: 'Courier New', Courier, monospace">
     <?php
     session_start();
-    // unset($_SESSION['tableau']);
+    if ($_SESSION['previous_location'] != 'game') resetGame();
+    $_SESSION['previous_location'] = 'game';
     if (!isset($_SESSION['tableau'])) {
         $_SESSION['tableau'] = [];
     }
@@ -30,6 +31,7 @@
         droite();
     } else if (array_key_exists('reset', $_POST)) {
         resetGame();
+        echo "labyrinthe remis à zéro";
     } else if (array_key_exists('pseudoValidation', $_POST)) {
         if ($_POST['pseudo'] == "") {
             echo "ERREUR: vous n'avez pas entré de pseudo";
@@ -98,7 +100,6 @@
     {
         $_SESSION['tableau'] = [];
         fillTableau();
-        echo "labyrinthe remis à zéro";
     }
 
     function printTableau()

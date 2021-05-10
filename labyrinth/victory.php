@@ -9,6 +9,7 @@
 <body>
     <?php
     session_start();
+    $_SESSION['previous_location'] = 'victory_page';
     echo "félicitation " . $_SESSION["pseudo"] . ", vous avez gagné!!";
     if (array_key_exists('back', $_POST)) {
         header("Location: http://caphp/labyrinth/index");
