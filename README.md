@@ -1,5 +1,8 @@
 # CA_php_course
  
+ j'ai récupéré et adapté deux algorithme différents sur internet, un en python que je n'ai pas utilisé et un en php que j'ai modifié pour l'adapter à mon système de sauvegarde txt
+
+
 ## labyrinthe to do:
   - [X] créer un premier labyrinthe manuellement en .txt avec des lettres
   - [X] ouvrir le fichier .txt et afficher le labyrinthe en php sur le site
@@ -7,7 +10,7 @@
   - [x] gérer déplacements personnage
   - [x] victoire
   - [x] pseudo
-  - [ ] génération aléatoire labyrinthe
+  - [x] génération aléatoire labyrinthe
   - [ ] enregistrement du labyrinthe en RLE (pouvoir en stocker plein)
   - [ ] tout mettre dans une classe et séparé en méthodes
   - [ ] enregistrer les score dans une BDD
@@ -15,7 +18,7 @@
 
 ### extra bonus
  - [ ] ajouter les inputs au clavier en JavaScript
- - [ ] ajouter un choix de taille de labyrinthe
+ - [x] ajouter un choix de taille de labyrinthe
 
 ## génération labyrinthe:
 

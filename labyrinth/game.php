@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Titre de la page</title>
+    <title>Labyrinthe</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
@@ -12,6 +12,7 @@
     <pre style="font-family: 'Courier New', Courier, monospace">
     <?php
     session_start();
+
     if ($_SESSION['previous_location'] != 'game') resetGame();
     $_SESSION['previous_location'] = 'game';
     if (!isset($_SESSION['tableau'])) {
