@@ -8,9 +8,11 @@
  * @author     Bill Parrott <bparrott@ku.edu>
  * @date       11/30/2012
  * @version    1.0.0
+ *
+ * édité et modifié par Mathieu Pithon
  */
 
-class Maze
+class Generation
 {
     const DEFAULT_MAZE_HEIGHT = 30;
     const DEFAULT_MAZE_WIDTH  = 50;
@@ -71,14 +73,7 @@ class Maze
     } //end generate
 
 
-    /**
-     * display()
-     *
-     * Wrapper for the other print function that defaults to using std::cout
-     * as the output location.
-     *
-     * @return void
-     */
+  
     public function saveToFile()
     {
         // Each row is 2 character lines high, including top border, then add 1 for
@@ -129,6 +124,8 @@ class Maze
             }
             fwrite($save, "\n");
         }
+
+        // Ajout des modifications pour rendre le labyrinthe jouable
         fclose($save);
         $save = fopen("levels/customlevel.txt", "r") or die("Unable to open file!");
         $tempSave = [];
@@ -148,7 +145,7 @@ class Maze
         }
 
 
-    } //end display
+    }
 
 
     /**

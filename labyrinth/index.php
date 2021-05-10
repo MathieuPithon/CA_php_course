@@ -28,9 +28,9 @@
                     $x = $_POST['largeur'];
                     $y = $_POST['hauteur'];
             
-                    $m = new Maze((int) $x, (int) $y);
-                    $m->generate();
-                    $m->saveToFile();
+                    $maze = new Generation((int) $x, (int) $y);
+                    $maze->generate();
+                    $maze->saveToFile();
                 }
                 header("Location: http://caphp/labyrinth/game");
             } else{
@@ -60,12 +60,12 @@
             <input type="radio" name="taille" value="custom" />
             <label for="custom">custom:</label>
         </div>
-        <div class="slidecontainer">
+        <div>
             <label for="hauteur">hauteur</label>
             <input type="range" min="5" max="100" value="30" class="slider" id="heightRange" name="hauteur">
             <p>Value: <span id="heightValue"></span></p>
         </div>
-        <div class="slidecontainer">
+        <div>
             <label for="largeur">largeur</label>
             <input type="range" min="5" max="100" value="50" class="slider" id="widthRange" name="largeur">
             <p>Value: <span id="widthValue"></span></p>

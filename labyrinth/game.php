@@ -161,9 +161,23 @@
         </div>
         <input type="text" name="pseudo" /></div>
         <input type="submit" name="pseudoValidation" class="button" value="changer de pseudo" />
+        votre pseudo actuel est <?php echo $_SESSION['pseudo']; ?>
         <br><br>
         <input type="submit" name="mainmenu" class="button" value="retour au menu principal" />
     </form>
+    <script>
+        document.addEventListener('keydown', function(event) {
+        if(event.keyCode == 37) {
+           <?php gauche(); ?>;
+        }else if(event.keyCode == 38) {
+            <?php haut(); ?>;
+        }else if(event.keyCode == 40) {
+            <?php bas(); ?>;
+        }else if(event.keyCode == 39) {
+            <?php droite(); ?>;
+        }
+        });
+    </script>
 </body>
 
 </html>
