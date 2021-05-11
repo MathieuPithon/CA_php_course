@@ -1,6 +1,6 @@
 # CA_php_course
  
- j'ai récupéré et adapté deux algorithme différents sur internet, un en python que je n'ai pas utilisé et un en php que j'ai modifié pour l'adapter à mon système de sauvegarde txt
+ j'ai récupéré et adapté deux algorithme différents sur internet, un en python que je n'ai pas utilisé et un en php que j'ai modifié pour l'adapter à mon système de sauvegarde txt. J'utilise la méthode de fusion aléatoire de chemin, qui est plus longue sur des gros labyrinthe mais qui permet de fournir des labyrinthes plus équilibrés.
 
 
 ## labyrinthe to do:
@@ -13,7 +13,7 @@
   - [x] génération aléatoire labyrinthe
   - [ ] enregistrement du labyrinthe en RLE (pouvoir en stocker plein)
   - [ ] tout mettre dans une classe et séparé en méthodes
-  - [ ] enregistrer les score dans une BDD
+  - [ ] enregistrer les labyrinthes dans une BDD
   - [ ] faire les bonus
 
 ### extra bonus
@@ -25,7 +25,7 @@
 #### générateur manuel:
 - https://www.dcode.fr/generateur-labyrinthe
 #### algorithme automatique 
-- https://fr.wikipedia.org/wiki/Mod%C3%A9lisation_math%C3%A9matique_de_labyrinthe
+- https://fr.wikipedia.org/wiki/Mod%C3%A9lisation_math%C3%A9matique_de_labyrinthe#Fusion_al%C3%A9atoire_de_chemins
   
 ## encodage RLE:
 #### règles: 
@@ -35,3 +35,8 @@
 
 ## bonus:
 ![bonus](https://user-images.githubusercontent.com/35268109/115056836-98028980-9ee3-11eb-9e1f-1e1fe3d9a350.png)
+
+
+en cours:
+corriger les bugs bdd
+changer mysqli en variable de session
