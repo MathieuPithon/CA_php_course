@@ -11,6 +11,7 @@
   - [x] victoire
   - [x] pseudo
   - [x] génération aléatoire labyrinthe
+  - [ ] renommer les variables correctement
   - [ ] enregistrement du labyrinthe en RLE (pouvoir en stocker plein)
   - [ ] tout mettre dans une classe et séparé en méthodes
   - [ ] enregistrer les labyrinthes dans une BDD

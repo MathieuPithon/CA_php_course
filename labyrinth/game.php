@@ -12,23 +12,25 @@
     <pre style="font-family: 'Courier New', Courier, monospace">
     <?php
     session_start();
-    $mysqli = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
+    if (!(isset($_SESSION['mysqli']))){
+        $_session['mysqli'] = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
+    }
 
-    if ($mysqli->connect_errno) {
-        printf("Échec de la connexion : %s\n", $mysqli->connect_error);
+    if ($_SESSION['mysqli']->connect_errno) {
+        printf("Échec de la connexion : %s\n", $_SESSION['mysqli']->connect_error);
         exit();
     }
 
 
     $debug = $_SESSION["id"] - 1;
-    if ($result = $mysqli->query("SELECT id_labyrinthe, height, line FROM maze_line WHERE id_labyrinthe = " . $debug . " ORDER BY height ASC")) {
+    if ($result = $_SESSION['mysqli']->query("SELECT id_labyrinthe, height, line FROM maze_line WHERE id_labyrinthe = " . $debug . " ORDER BY height ASC")) {
         $tableau = [];
         while ($row = $result->fetch_assoc()) {
             $tableau[] = str_split($row["line"]);
         }
     }
  
-    if ($result = $mysqli->query("SELECT id, name FROM nickname WHERE id = " . $_SESSION['id'])) {
+    if ($result = $_SESSION['mysqli']->query("SELECT id, name FROM nickname WHERE id = " . $_SESSION['id'])) {
         $row = $result->fetch_assoc();
         $pseudo = $row["name"];
         
@@ -54,7 +56,6 @@
 
     function checkInputs($tableau)
     {
-        global $mysqli;
         if (array_key_exists('haut', $_POST)) {
             haut($tableau);
         } else if (array_key_exists('bas', $_POST)) {
@@ -71,10 +72,10 @@
                 echo "ERREUR: vous n'avez pas entré de pseudo";
             } else {
                 $query = "DELETE FROM nickname WHERE id=" . $_SESSION['id'];
-                $mysqli->query($query);
+                $_SESSION['mysqli']->query($query);
 
                 $query = "INSERT INTO nickname (id, name) VALUES (?, ?)";
-                $stmt = $mysqli->prepare($query);
+                $stmt = $_SESSION['mysqli']->prepare($query);
                 $stmt->bind_param("ss", $_SESSION['id'], $_POST['pseudo']);
                 $stmt->execute();
                 header("Refresh:0");
@@ -199,16 +200,15 @@
 
     function updateBDD($tableau)
     {
-        global $mysqli;
         $height = 0;
         foreach($tableau as $line){
             $query = "DELETE FROM maze_line WHERE id_labyrinthe=" . $_SESSION['id'];
-            $mysqli->query($query);
+            $_SESSION['mysqli']->query($query);
         }
         foreach($tableau as $line){
             $strline = implode($line);
             $query = "INSERT INTO maze_line (id_labyrinthe, height, line, nickname_id) VALUES (?, ?, ?, ?)";
-            $stmt = $mysqli->prepare($query);
+            $stmt = $_SESSION['mysqli']->prepare($query);
             $stmt->bind_param("ssss", $_SESSION['id'], $height, $strline, $_SESSION['id']);
             $stmt->execute();
             $height++;
