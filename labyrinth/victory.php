@@ -9,12 +9,12 @@
 <body>
     <?php
     session_start();
-    if (!(isset($_SESSION['mysqli']))){
-        $_session['mysqli'] = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
-    }
+    
+    $mysqli = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
+    
 
-    if ($_SESSION['mysqli']->connect_errno) {
-        printf("Échec de la connexion : %s\n", $_SESSION['mysqli']->connect_error);
+    if ($mysqli->connect_errno) {
+        printf("Échec de la connexion : %s\n", $mysqli->connect_error);
         exit();
     }
     $_SESSION['previous_location'] = 'victory_page';
@@ -24,19 +24,19 @@
     }
 
 
-    $result = $_SESSION['mysqli']->query("SELECT * FROM nickname");
+    $result = $mysqli->query("SELECT * FROM nickname");
 
     while ($row = $result->fetch_assoc()){
         
         $query = "DELETE FROM nickname";
-        $_SESSION['mysqli']->query($query);
+        $mysqli->query($query);
     }
-    // $result = $_SESSION['mysqli']->query("SELECT * FROM maze_line");
+    // $result = $mysqli->query("SELECT * FROM maze_line");
 
     // while ($row = $result->fetch_assoc()){
         
     //     $query = "DELETE FROM maze_line";
-    //     $_SESSION['mysqli']->query($query);
+    //     $mysqli->query($query);
     // }
     ?>
     <form method="post">
