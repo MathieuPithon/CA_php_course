@@ -122,7 +122,6 @@
             foreach ($case as $subcase) {
                 if ($subcase == "m") {
                     echo "█";
-                    // echo "▓";
                 }
                 if ($subcase == "v") {
                     echo "&nbsp";

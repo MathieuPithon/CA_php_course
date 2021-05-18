@@ -137,18 +137,8 @@ class Generation
         $tempSave[sizeof($tempSave) - 1][sizeof($tempSave[sizeof($tempSave) - 1]) - 1] = "m";
         $tempSave[sizeof($tempSave) - 2][sizeof($tempSave[sizeof($tempSave) - 1]) - 1] = "w";
 
-        $objects_left = $_SESSION['nb_objets'];
-        while ($objects_left > 0){
-            $posY = rand( 0, sizeof($tempSave) - 1);
-            $posX = rand( 0, sizeof($tempSave[0]) - 1);
-            if ($tempSave[$posY][$posX] == "v"){
-                $tempSave[$posY][$posX] = "o";
-                $objects_left--;
-            }
-
-        }
-
-        // $tempSave = $this->addObjects($tempSave);
+        
+        $tempSave = $this->addObjects($tempSave);
         fclose($save);
         $save = fopen("levels/customlevel.txt", "w") or die("Unable to open file!");
         for ($i = 0; $i < sizeof($tempSave); $i++){

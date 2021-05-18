@@ -22,19 +22,28 @@
                 $_SESSION['pseudo'] = $_POST['pseudo'];
                 $_SESSION['nb_objets'] = $_POST['objets'];
                 $_SESSION['nb_objets_restant'] = $_POST['objets'];
-                if ($_POST['taille'] == 'petit') $_SESSION['level'] = 'level1';
-                if ($_POST['taille'] == 'moyen') $_SESSION['level'] = 'level2';
-                if ($_POST['taille'] == 'immense') $_SESSION['level'] = 'level3';
-                if ($_POST['taille'] == 'custom'){
-                    $_SESSION['level'] = 'customlevel';
-                    require_once './generation.php';
-                    $x = $_POST['largeur'];
-                    $y = $_POST['hauteur'];
-            
-                    $maze = new Generation((int) $x, (int) $y);
-                    $maze->generate();
-                    $maze->saveToFile();
+                if ($_POST['taille'] == 'petit'){
+                    $x = 10;
+                    $y = 5;
                 }
+                if ($_POST['taille'] == 'moyen'){
+                    $x = 20;
+                    $y = 10;
+                }
+                if ($_POST['taille'] == 'grand'){
+                    $x = 30;
+                    $y = 15;
+                }
+                if ($_POST['taille'] == 'custom'){
+                    $x = $_POST['largeur'] / 2;
+                    $y = $_POST['hauteur'] / 2;
+                }
+                $_SESSION['level'] = 'customlevel';
+                require_once './generation.php';
+                $maze = new Generation((int) $x, (int) $y);
+                $maze->generate();
+                $maze->saveToFile();
+    
                 header("Location: http://caphp/labyrinth/game");
             } else{
                 echo "ERREUR: vous n'avez pas choisi votre niveau de difficulté <br>";
@@ -54,28 +63,28 @@
         </div>
         <div>
             <input type="radio" name="taille" value="petit" />
-            <label for="petit">petit</label>
+            <label for="petit">petit (10x20)</label>
         </div>
         <div>
             <input type="radio" name="taille" value="moyen" />
-            <label for="moyen">moyen</label>
+            <label for="moyen">moyen (20x40)</label>
         </div>
         <div>
-            <input type="radio" name="taille" value="immense" />
-            <label for="immense">immense</label>
+            <input type="radio" name="taille" value="grand" />
+            <label for="grand">grand (30x60)</label>
         </div>
         <div>
-            <input type="radio" name="taille" value="custom" />
+            <input type="radio" name="taille" value="custom" checked />
             <label for="custom">custom:</label>
         </div>
         <div>
             <label for="hauteur">hauteur</label>
-            <input type="range" min="5" max="100" value="30" class="slider" id="heightRange" name="hauteur" style="width: 300px;">
+            <input type="range" min="10" max="200" value="30" class="slider" id="heightRange" name="hauteur" style="width: 300px;">
             <p>Value: <span id="heightValue"></span></p>
         </div>
         <div>
             <label for="largeur">largeur</label>
-            <input type="range" min="5" max="100" value="50" class="slider" id="widthRange" name="largeur" style="width: 300px;">
+            <input type="range" min="10" max="200" value="50" class="slider" id="widthRange" name="largeur" style="width: 300px;">
             <p>Value: <span id="widthValue"></span></p>
         </div>
     </form>
