@@ -79,12 +79,12 @@
         </div>
         <div>
             <label for="hauteur">hauteur</label>
-            <input type="range" min="10" max="200" value="30" class="slider" id="heightRange" name="hauteur" style="width: 300px;">
+            <input type="range" min="4" max="200" value="60" class="slider" id="heightRange" name="hauteur" style="width: 300px;">
             <p>Value: <span id="heightValue"></span></p>
         </div>
         <div>
             <label for="largeur">largeur</label>
-            <input type="range" min="10" max="200" value="50" class="slider" id="widthRange" name="largeur" style="width: 300px;">
+            <input type="range" min="4" max="200" value="100" class="slider" id="widthRange" name="largeur" style="width: 300px;">
             <p>Value: <span id="widthValue"></span></p>
         </div>
     </form>

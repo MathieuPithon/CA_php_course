@@ -8,7 +8,7 @@
     <script src="script.js"></script>
 </head>
 
-<body>
+<body id="page">
     <pre style="font-family: 'Courier New', Courier, monospace">
     <?php
     session_start();
@@ -49,8 +49,8 @@
     {
         $i = 0;
         foreach ($_SESSION['tableau'] as $line) {
-            if ($key = array_search("j", $line)) {
-                return [$i, $key];
+            if ($row = array_search("j", $line)) {
+                return [$i, $row];
             }
             $i++;
         }
@@ -58,7 +58,7 @@
 
     function haut()
     {
-        $key = findPlayer($_SESSION['tableau']);
+        $key = findPlayer();
         // $spaces = array('v', 'o');
         if (in_array($_SESSION['tableau'][$key[0] - 1][$key[1]], array('v', 'o'))) {
             if ($_SESSION['tableau'][$key[0] - 1][$key[1]] == "o") $_SESSION['nb_objets_restant']--;
@@ -69,7 +69,7 @@
 
     function bas()
     {
-        $key = findPlayer($_SESSION['tableau']);
+        $key = findPlayer();
         $spaces = array('v', 'o');
         if (in_array($_SESSION['tableau'][$key[0] + 1][$key[1]], $spaces)) {
             if ($_SESSION['tableau'][$key[0] + 1][$key[1]] == "o") $_SESSION['nb_objets_restant']--;
@@ -80,7 +80,7 @@
 
     function gauche()
     {
-        $key = findPlayer($_SESSION['tableau']);
+        $key = findPlayer();
         if (in_array($_SESSION['tableau'][$key[0]][$key[1] - 1], array('v', 'o'))) {
             if ($_SESSION['tableau'][$key[0]][$key[1] - 1] == "o") $_SESSION['nb_objets_restant']--;
             $_SESSION['tableau'][$key[0]][$key[1]] = "v";
@@ -90,7 +90,7 @@
 
     function droite()
     {
-        $key = findPlayer($_SESSION['tableau']);
+        $key = findPlayer();
         if ($_SESSION['tableau'][$key[0]][$key[1] + 1] == "w") {
             if ($_SESSION['nb_objets_restant'] > 0){
                 echo "vous n'avez pas ramassé tout les objets, veuillez tous les récupérer avant de sortir";  
@@ -160,15 +160,24 @@
     }
 
 
+    
     printTableau();
 
     ?>
     </pre>
     <form method="post">
-        <div class="block"> <input type="submit" name="haut" class="button" value="haut" /></div>
-        <input type="submit" name="gauche" class="button" value="gauche" />
-        <input type="submit" name="bas" class="button" value="bas" />
-        <input type="submit" name="droite" class="button" value="droite" />
+        <table>
+            <tr>
+                <th></th>
+                <th><input type="submit" name="haut" class="button" value="haut" id="haut" /></th>
+                <th></th> 
+            </tr>
+            <tr>
+                <th><input type="submit" name="gauche" class="button" value="gauche" id="gauche" /></th>
+                <th><input type="submit" name="bas" class="button" value="bas" id="bas" /></th>
+                <th><input type="submit" name="droite" class="button" value="droite" id="droite"/></th>
+            </tr>
+        </table>
         <br> nombre d'objets restant à ramasser: <?php echo $_SESSION['nb_objets_restant'] ?>
         <div class="block">
             <br> <br>
@@ -180,6 +189,20 @@
         <br><br>
         <input type="submit" name="mainmenu" class="button" value="retour au menu principal" />
     </form>
+    <script>
+        var page = document.getElementById("page");
+        
+        page.addEventListener("keydown", function (event) {
+        if (event.keyCode == 38) {
+        document.getElementById("haut").click();
+        } else if (event.keyCode == 37) {
+        document.getElementById("gauche").click();
+        } else if (event.keyCode == 39) {
+        document.getElementById("droite").click();
+        } else if (event.keyCode == 40) {
+        document.getElementById("bas").click();
+        }
+        });
+    </script>
 </body>
-
 </html>
