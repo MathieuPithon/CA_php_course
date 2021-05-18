@@ -78,7 +78,6 @@ class Generation
     {
         // Each row is 2 character lines high, including top border, then add 1 for
         // bottom border of the maze
-        session_start();
         $save = fopen("levels/customlevel.txt", "w") or die("Unable to open file!");
 
 
@@ -144,23 +143,7 @@ class Generation
                 fwrite($save, $tempSave[$i][$j]);
             }
         }
-        $mysqli = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
 
-        if ($mysqli->connect_errno) {
-            printf("Échec de la connexion : %s\n", $mysqli->connect_error);
-            exit();
-        }
-
-        $height = 0;
-        foreach($tempSave as $line){
-            $strline = implode($line);
-            $query = "INSERT INTO maze_line (id_labyrinthe, height, line, nickname_id) VALUES (?, ?, ?, ?)";
-            $stmt = $mysqli->prepare($query);
-            $stmt->bind_param("ssss", $_SESSION['id'], $height, $strline, $_SESSION['id']);
-            $stmt->execute();
-            $height++;
-            $_SESSION['test'] = $height;
-        }
 
     }
 

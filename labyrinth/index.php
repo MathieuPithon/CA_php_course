@@ -11,23 +11,12 @@
 <body>
     <?php
     session_start();
-
-    $mysqli = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
-
-    if ($mysqli->connect_errno) {
-        printf("Échec de la connexion : %s\n", $mysqli->connect_error);
-        exit();
-    }
-
-
-
-
     $_SESSION['previous_location'] = 'homepage';
     if (array_key_exists('validation', $_POST)) {
         if ($_POST['pseudo'] == "") {
             echo "ERREUR: vous n'avez pas entré de pseudo <br>";
         } else {
-            $pseudo = $_POST['pseudo'];
+            $_SESSION['pseudo'] = $_POST['pseudo'];
             if (isset($_POST['taille']))
             {
                 if ($_POST['taille'] == 'petit') $_SESSION['level'] = 'level1';
@@ -43,21 +32,6 @@
                     $maze->generate();
                     $maze->saveToFile();
                 }
-                if ($result = $mysqli->query("SELECT DISTINCT id_labyrinthe FROM maze_line ORDER BY id_labyrinthe DESC LIMIT 1")) {
-                    while ($row = $result->fetch_assoc()){
-                        $_SESSION['id'] = (int)$row['id_labyrinthe'] +1;
-                        
-                    }
-                }
-
-                $query = "INSERT INTO nickname (id, name) VALUES (?, ?)";
-                $stmt = $mysqli->prepare($query);
-                $stmt->bind_param("ss", $_SESSION['id'], $pseudo);
-                if ($stmt->execute() === FALSE) {
-                    echo "Error: " . $query . "<br>" . $mysqli->error ."<br>";
-                  };
-
-
                 header("Location: http://caphp/labyrinth/game");
             } else{
                 echo "ERREUR: vous n'avez pas choisi votre niveau de difficulté <br>";
