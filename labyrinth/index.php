@@ -12,11 +12,10 @@
     <?php
     session_start();
 
-    if (!(isset($_SESSION['mysqli']))){
-        $_session['mysqli'] = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
-    }
-    if ($_SESSION['mysqli']->connect_errno) {
-        printf("Échec de la connexion : %s\n", $_SESSION['mysqli']->connect_error);
+    $mysqli = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
+
+    if ($mysqli->connect_errno) {
+        printf("Échec de la connexion : %s\n", $mysqli->connect_error);
         exit();
     }
 
@@ -44,7 +43,7 @@
                     $maze->generate();
                     $maze->saveToFile();
                 }
-                if ($result = $_SESSION['mysqli']->query("SELECT DISTINCT id_labyrinthe FROM maze_line ORDER BY id_labyrinthe DESC LIMIT 1")) {
+                if ($result = $mysqli->query("SELECT DISTINCT id_labyrinthe FROM maze_line ORDER BY id_labyrinthe DESC LIMIT 1")) {
                     while ($row = $result->fetch_assoc()){
                         $_SESSION['id'] = (int)$row['id_labyrinthe'] +1;
                         
@@ -52,10 +51,10 @@
                 }
 
                 $query = "INSERT INTO nickname (id, name) VALUES (?, ?)";
-                $stmt = $_SESSION['mysqli']->prepare($query);
+                $stmt = $mysqli->prepare($query);
                 $stmt->bind_param("ss", $_SESSION['id'], $pseudo);
                 if ($stmt->execute() === FALSE) {
-                    echo "Error: " . $query . "<br>" . $_SESSION['mysqli']->error ."<br>";
+                    echo "Error: " . $query . "<br>" . $mysqli->error ."<br>";
                   };
 
 

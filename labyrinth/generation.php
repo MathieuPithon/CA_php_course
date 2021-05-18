@@ -144,12 +144,10 @@ class Generation
                 fwrite($save, $tempSave[$i][$j]);
             }
         }
-        if (!(isset($_SESSION['mysqli']))){
-            $_session['mysqli'] = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
-        }
+        $mysqli = new mysqli("localhost:3306", "root", "", "phpLabyrinthe");
 
-        if ($_SESSION['mysqli']->connect_errno) {
-            printf("Échec de la connexion : %s\n", $_SESSION['mysqli']->connect_error);
+        if ($mysqli->connect_errno) {
+            printf("Échec de la connexion : %s\n", $mysqli->connect_error);
             exit();
         }
 
@@ -157,7 +155,7 @@ class Generation
         foreach($tempSave as $line){
             $strline = implode($line);
             $query = "INSERT INTO maze_line (id_labyrinthe, height, line, nickname_id) VALUES (?, ?, ?, ?)";
-            $stmt = $_SESSION['mysqli']->prepare($query);
+            $stmt = $mysqli->prepare($query);
             $stmt->bind_param("ssss", $_SESSION['id'], $height, $strline, $_SESSION['id']);
             $stmt->execute();
             $height++;
