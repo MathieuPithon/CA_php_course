@@ -59,7 +59,9 @@
     function haut()
     {
         $key = findPlayer($_SESSION['tableau']);
-        if ($_SESSION['tableau'][$key[0] - 1][$key[1]] == "v") {
+        // $spaces = array('v', 'o');
+        if (in_array($_SESSION['tableau'][$key[0] - 1][$key[1]], array('v', 'o'))) {
+            if ($_SESSION['tableau'][$key[0] - 1][$key[1]] == "o") $_SESSION['nb_objets_restant']--;
             $_SESSION['tableau'][$key[0]][$key[1]] = "v";
             $_SESSION['tableau'][$key[0] - 1][$key[1]] = "j";
         }
@@ -68,7 +70,9 @@
     function bas()
     {
         $key = findPlayer($_SESSION['tableau']);
-        if ($_SESSION['tableau'][$key[0] + 1][$key[1]] == "v") {
+        $spaces = array('v', 'o');
+        if (in_array($_SESSION['tableau'][$key[0] + 1][$key[1]], $spaces)) {
+            if ($_SESSION['tableau'][$key[0] + 1][$key[1]] == "o") $_SESSION['nb_objets_restant']--;
             $_SESSION['tableau'][$key[0]][$key[1]] = "v";
             $_SESSION['tableau'][$key[0] + 1][$key[1]] = "j";
         }
@@ -77,7 +81,8 @@
     function gauche()
     {
         $key = findPlayer($_SESSION['tableau']);
-        if ($_SESSION['tableau'][$key[0]][$key[1] - 1] == "v") {
+        if (in_array($_SESSION['tableau'][$key[0]][$key[1] - 1], array('v', 'o'))) {
+            if ($_SESSION['tableau'][$key[0]][$key[1] - 1] == "o") $_SESSION['nb_objets_restant']--;
             $_SESSION['tableau'][$key[0]][$key[1]] = "v";
             $_SESSION['tableau'][$key[0]][$key[1] - 1] = "j";
         }
@@ -87,11 +92,17 @@
     {
         $key = findPlayer($_SESSION['tableau']);
         if ($_SESSION['tableau'][$key[0]][$key[1] + 1] == "w") {
-            $_SESSION['tableau'][$key[0]][$key[1]] = "v";
-            $_SESSION['tableau'][$key[0]][$key[1] + 1] = "j";
-            victory();
+            if ($_SESSION['nb_objets_restant'] > 0){
+                echo "vous n'avez pas ramassé tout les objets, veuillez tous les récupérer avant de sortir";  
+            }else{
+                $_SESSION['tableau'][$key[0]][$key[1]] = "v";
+                $_SESSION['tableau'][$key[0]][$key[1] + 1] = "j";
+                victory();
+            }
+        
         }
-        if ($_SESSION['tableau'][$key[0]][$key[1] + 1] == "v") {
+        if (in_array($_SESSION['tableau'][$key[0]][$key[1] + 1], array('v', 'o'))) {
+            if ($_SESSION['tableau'][$key[0]][$key[1] + 1] == "o") $_SESSION['nb_objets_restant']--;
             $_SESSION['tableau'][$key[0]][$key[1]] = "v";
             $_SESSION['tableau'][$key[0]][$key[1] + 1] = "j";
         }
@@ -100,6 +111,7 @@
     function resetGame()
     {
         $_SESSION['tableau'] = [];
+        $_SESSION['nb_objets_restant'] = $_SESSION['nb_objets'];
         fillTableau();
     }
 
@@ -120,6 +132,9 @@
                 }
                 if ($subcase == "w") {
                     echo "∏";
+                }
+                if ($subcase == "o") {
+                    echo "o";
                 }
             }
             echo  "<br>";
@@ -155,6 +170,7 @@
         <input type="submit" name="gauche" class="button" value="gauche" />
         <input type="submit" name="bas" class="button" value="bas" />
         <input type="submit" name="droite" class="button" value="droite" />
+        <br> nombre d'objets restant à ramasser: <?php echo $_SESSION['nb_objets_restant'] ?>
         <div class="block">
             <br> <br>
             <input type="submit" name="reset" class="button" value="retourner au début" />
@@ -165,19 +181,6 @@
         <br><br>
         <input type="submit" name="mainmenu" class="button" value="retour au menu principal" />
     </form>
-    <script>
-        document.addEventListener('keydown', function(event) {
-        if(event.keyCode == 37) {
-           <?php gauche(); ?>;
-        }else if(event.keyCode == 38) {
-            <?php haut(); ?>;
-        }else if(event.keyCode == 40) {
-            <?php bas(); ?>;
-        }else if(event.keyCode == 39) {
-            <?php droite(); ?>;
-        }
-        });
-    </script>
 </body>
 
 </html>

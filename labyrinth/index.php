@@ -16,9 +16,12 @@
         if ($_POST['pseudo'] == "") {
             echo "ERREUR: vous n'avez pas entré de pseudo <br>";
         } else {
-            $_SESSION['pseudo'] = $_POST['pseudo'];
+
             if (isset($_POST['taille']))
             {
+                $_SESSION['pseudo'] = $_POST['pseudo'];
+                $_SESSION['nb_objets'] = $_POST['objets'];
+                $_SESSION['nb_objets_restant'] = $_POST['objets'];
                 if ($_POST['taille'] == 'petit') $_SESSION['level'] = 'level1';
                 if ($_POST['taille'] == 'moyen') $_SESSION['level'] = 'level2';
                 if ($_POST['taille'] == 'immense') $_SESSION['level'] = 'level3';
@@ -45,6 +48,11 @@
         <div class="block"> <input type="text" name="pseudo" /></div>
         <div class="block"> <input type="submit" name="validation" class="button" value="valider" /></div>
         <div>
+            <label for="objets">nombre d'objet à ramasser</label>
+            <input type="range" min="0" max="100" value="0" class="slider" id="objects" name="objets" style="width: 300px;">
+            <p>Value: <span id="objectNb"></span></p>
+        </div>
+        <div>
             <input type="radio" name="taille" value="petit" />
             <label for="petit">petit</label>
         </div>
@@ -62,12 +70,12 @@
         </div>
         <div>
             <label for="hauteur">hauteur</label>
-            <input type="range" min="5" max="100" value="30" class="slider" id="heightRange" name="hauteur">
+            <input type="range" min="5" max="100" value="30" class="slider" id="heightRange" name="hauteur" style="width: 300px;">
             <p>Value: <span id="heightValue"></span></p>
         </div>
         <div>
             <label for="largeur">largeur</label>
-            <input type="range" min="5" max="100" value="50" class="slider" id="widthRange" name="largeur">
+            <input type="range" min="5" max="100" value="50" class="slider" id="widthRange" name="largeur" style="width: 300px;">
             <p>Value: <span id="widthValue"></span></p>
         </div>
     </form>
@@ -76,8 +84,15 @@
         var heightOutput = document.getElementById("heightValue");
         var widthSlider = document.getElementById("widthRange");
         var widthOutput = document.getElementById("widthValue");
+        var objectSlider = document.getElementById("objects");
+        var objectOutput = document.getElementById("objectNb");
         heightOutput.innerHTML = heightSlider.value;
         widthOutput.innerHTML = widthSlider.value;
+        objectOutput.innerHTML = objectSlider.value;
+
+        objectSlider.oninput = function() {
+            objectOutput.innerHTML = this.value;
+        }
 
         heightSlider.oninput = function() {
             heightOutput.innerHTML = this.value;
