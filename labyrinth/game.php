@@ -40,7 +40,7 @@
             $_SESSION['pseudo'] = $_POST['pseudo'];
             echo "votre nouveau pseudo est: " . $_SESSION['pseudo'];
         }
-    }else if (array_key_exists('mainmenu', $_POST)){
+    } else if (array_key_exists('mainmenu', $_POST)) {
         header("Location: http://caphp/labyrinth/index");
     }
 
@@ -92,14 +92,13 @@
     {
         $key = findPlayer();
         if ($_SESSION['tableau'][$key[0]][$key[1] + 1] == "w") {
-            if ($_SESSION['nb_objets_restant'] > 0){
-                echo "vous n'avez pas ramassé tout les objets, veuillez tous les récupérer avant de sortir";  
-            }else{
+            if ($_SESSION['nb_objets_restant'] > 0) {
+                echo "vous n'avez pas ramassé tout les objets, veuillez tous les récupérer avant de sortir";
+            } else {
                 $_SESSION['tableau'][$key[0]][$key[1]] = "v";
                 $_SESSION['tableau'][$key[0]][$key[1] + 1] = "j";
                 victory();
             }
-        
         }
         if (in_array($_SESSION['tableau'][$key[0]][$key[1] + 1], array('v', 'o'))) {
             if ($_SESSION['tableau'][$key[0]][$key[1] + 1] == "o") $_SESSION['nb_objets_restant']--;
@@ -160,7 +159,7 @@
     }
 
 
-    
+
     printTableau();
 
     ?>
@@ -170,12 +169,12 @@
             <tr>
                 <th></th>
                 <th><input type="submit" name="haut" class="button" value="haut" id="haut" /></th>
-                <th></th> 
+                <th></th>
             </tr>
             <tr>
                 <th><input type="submit" name="gauche" class="button" value="gauche" id="gauche" /></th>
                 <th><input type="submit" name="bas" class="button" value="bas" id="bas" /></th>
-                <th><input type="submit" name="droite" class="button" value="droite" id="droite"/></th>
+                <th><input type="submit" name="droite" class="button" value="droite" id="droite" /></th>
             </tr>
         </table>
         <br> nombre d'objets restant à ramasser: <?php echo $_SESSION['nb_objets_restant'] ?>
@@ -191,18 +190,19 @@
     </form>
     <script>
         var page = document.getElementById("page");
-        
-        page.addEventListener("keydown", function (event) {
-        if (event.keyCode == 38) {
-        document.getElementById("haut").click();
-        } else if (event.keyCode == 37) {
-        document.getElementById("gauche").click();
-        } else if (event.keyCode == 39) {
-        document.getElementById("droite").click();
-        } else if (event.keyCode == 40) {
-        document.getElementById("bas").click();
-        }
+
+        page.addEventListener("keydown", function(event) {
+            if (event.keyCode == 38) {
+                document.getElementById("haut").click();
+            } else if (event.keyCode == 37) {
+                document.getElementById("gauche").click();
+            } else if (event.keyCode == 39) {
+                document.getElementById("droite").click();
+            } else if (event.keyCode == 40) {
+                document.getElementById("bas").click();
+            }
         });
     </script>
 </body>
+
 </html>

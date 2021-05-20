@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Maze.php
  *
@@ -45,7 +46,7 @@ class Generation
 
         $this->buildBaseMaze();
     } //end __construct
-    
+
 
     /**
      * generate()
@@ -73,7 +74,7 @@ class Generation
     } //end generate
 
 
-  
+
     public function saveToFile()
     {
         // Each row is 2 character lines high, including top border, then add 1 for
@@ -137,30 +138,27 @@ class Generation
         $tempSave[sizeof($tempSave) - 1][sizeof($tempSave[sizeof($tempSave) - 1]) - 1] = "m";
         $tempSave[sizeof($tempSave) - 2][sizeof($tempSave[sizeof($tempSave) - 1]) - 1] = "w";
 
-        
+
         $tempSave = $this->addObjects($tempSave);
         fclose($save);
         $save = fopen("levels/customlevel.txt", "w") or die("Unable to open file!");
-        for ($i = 0; $i < sizeof($tempSave); $i++){
-            for ($j = 0; $j < sizeof($tempSave[$i]); $j++){
+        for ($i = 0; $i < sizeof($tempSave); $i++) {
+            for ($j = 0; $j < sizeof($tempSave[$i]); $j++) {
                 fwrite($save, $tempSave[$i][$j]);
             }
         }
-
-
     }
 
     public function addObjects($maze)
     {
         $objects_left = $_SESSION['nb_objets'];
-        while ($objects_left > 0){
-            $posY = rand( 0, sizeof($maze) - 1);
-            $posX = rand( 0, sizeof($maze[0]) - 1);
-            if ($maze[$posY][$posX] == "v"){
+        while ($objects_left > 0) {
+            $posY = rand(0, sizeof($maze) - 1);
+            $posX = rand(0, sizeof($maze[0]) - 1);
+            if ($maze[$posY][$posX] == "v") {
                 $maze[$posY][$posX] = "o";
                 $objects_left--;
             }
-
         }
         return $maze;
     }
@@ -311,7 +309,7 @@ class Generation
         $sx = $nx + (2 * $this->x) + 1;
 
         while (true) {
-            $wall = rand(1,4);
+            $wall = rand(1, 4);
             switch ($wall) {
                 case 1:
                     if ($n === true) {

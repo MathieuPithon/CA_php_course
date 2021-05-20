@@ -17,24 +17,23 @@
             echo "ERREUR: vous n'avez pas entré de pseudo <br>";
         } else {
 
-            if (isset($_POST['taille']))
-            {
+            if (isset($_POST['taille'])) {
                 $_SESSION['pseudo'] = $_POST['pseudo'];
                 $_SESSION['nb_objets'] = $_POST['objets'];
                 $_SESSION['nb_objets_restant'] = $_POST['objets'];
-                if ($_POST['taille'] == 'petit'){
+                if ($_POST['taille'] == 'petit') {
                     $x = 10;
                     $y = 5;
                 }
-                if ($_POST['taille'] == 'moyen'){
+                if ($_POST['taille'] == 'moyen') {
                     $x = 20;
                     $y = 10;
                 }
-                if ($_POST['taille'] == 'grand'){
+                if ($_POST['taille'] == 'grand') {
                     $x = 30;
                     $y = 15;
                 }
-                if ($_POST['taille'] == 'custom'){
+                if ($_POST['taille'] == 'custom') {
                     $x = $_POST['largeur'] / 2;
                     $y = $_POST['hauteur'] / 2;
                 }
@@ -43,12 +42,11 @@
                 $maze = new Generation((int) $x, (int) $y);
                 $maze->generate();
                 $maze->saveToFile();
-    
+
                 header("Location: http://caphp/labyrinth/game");
-            } else{
+            } else {
                 echo "ERREUR: vous n'avez pas choisi votre niveau de difficulté <br>";
             }
-
         }
     }
     ?>
